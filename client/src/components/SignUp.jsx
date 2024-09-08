@@ -27,9 +27,11 @@ const SignUp = () => {
         body: JSON.stringify({ ...data, role }),
       });
        const result = await response.text();
-       toast.success( result.body);
+       
+       toast.success( result);
     } catch (error) {
       toast.error("Error:", error);
+      console.log("the error is: " , error);
     } finally {
       setIsSubmitting(false);
     }
@@ -81,11 +83,11 @@ const SignUp = () => {
           <input
             {...register("password", {
               required: { value: true, message: "This field is required" },
-              minLength: { value: 6, message: "Minimum Length is 6" },
-              maxLength: { value: 10, message: "Maximum Length is 10" },
-              pattern: {
-                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/,
-                message: "Password must contain one uppercase, one lowercase, one number, and one special character"},
+              // minLength: { value: 6, message: "Minimum Length is 6" },
+              // maxLength: { value: 10, message: "Maximum Length is 10" },
+              // pattern: {
+              //   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,10}$/,
+              //   message: "Password must contain one uppercase, one lowercase, one number, and one special character"},
             })}
             type="password"
             placeholder="Password"

@@ -1,15 +1,15 @@
 // import express from 'express';
 // import router from './router/auth-router.js';
 // import bodyParser from 'body-parser';
-// const express = require('express');
-// const router = require('./router/auth-router.js');
-// const bodyParser = require('body-parser');
+const express = require('express');
+const router = require('./router/auth-router.js');
+const bodyParser = require('body-parser');
 
 // const app = express();
 // const port = 3000;
-// const cors = require("cors");
-// const connectDB = require('./config/db');
-// require('dotenv').config();
+const cors = require("cors");
+const connectDB = require('./config/db');
+require('dotenv').config();
 
 // connectDB();
 // app.use(cors());
