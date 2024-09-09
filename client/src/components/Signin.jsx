@@ -22,8 +22,10 @@ const Signin = () => {
         },
         body: JSON.stringify({ ...data }),
       });
-      const result = await response.text();
-      toast.success( result.body);
+      
+      const result = await response.json();
+    
+      toast.success( result.message);
     } catch (error) {
       toast.error(`Error: ${error.message}`);
     } finally {
@@ -40,7 +42,7 @@ const Signin = () => {
       </p>
       <div className="mb-4">
         <input
-          {...register("username", {
+          {...register("email", {
             required: { value: true, message: "This field is required" },
           })}
           type="text"
