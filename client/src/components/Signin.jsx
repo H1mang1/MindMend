@@ -22,12 +22,13 @@ const Signin = () => {
         },
         body: JSON.stringify({ ...data }),
       });
-      
+      if(!response.ok){
+        throw new Error("No such user exists. Please sign up.");
+      }
       const result = await response.json();
-    
       toast.success( result.message);
     } catch (error) {
-      toast.error(`Error: ${error.message}`);
+      toast.error(`${error.message}`);
     } finally {
       setIsSubmitting(false);
     }

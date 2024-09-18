@@ -11,7 +11,6 @@ const SignUp = () => {
   } = useForm();
   const [role, setRole] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const onSubmit =async (data) => {
     if (!role) {
       toast.warn("You need to select either Patient or Provider");
@@ -26,12 +25,15 @@ const SignUp = () => {
         },
         body: JSON.stringify({ ...data, role }),
       });
-       const result = await response.text();
-       
-       toast.success( result);
+      const result = await response.json();
+      if(response.ok){
+        toast.success(result.message);
+       }else {
+         throw new Error(result.error || "An error occurred during signup.");
+       }
+      
     } catch (error) {
-      toast.error("Error:", error);
-      console.log("the error is: " , error);
+      toast.error(`${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
