@@ -22,12 +22,12 @@ exports.signin = async (req, res) => {
   const { email, password } = req.body;
   try {
     console.log("request from user: ", email, password);
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password');
     if (!user) {
       return res.status(400).json({ error: 'User not found. Please sign up.' });
     }
 
-    // Validate password
+    //Validate password
     const validPassword = await user.comparePassword(password);
     if (!validPassword) {
       return res.status(401).json({ error: 'Invalid password. Please try again.' });
